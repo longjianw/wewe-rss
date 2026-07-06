@@ -9,7 +9,6 @@ import { ConfigurationType } from '@server/configuration';
 import { Feed, Item } from 'feed';
 import got, { Got } from 'got';
 import { load } from 'cheerio';
-import { minify } from 'html-minifier';
 import { LRUCache } from 'lru-cache';
 import pMap from '@cjs-exporter/p-map';
 
@@ -101,6 +100,7 @@ export class FeedsService {
   }
 
   async cleanHtml(source: string) {
+    const { minify } = await import('html-minifier');
     const $ = load(source, { decodeEntities: false });
 
     const dirtyHtml = $.html($('.rich_media_content'));

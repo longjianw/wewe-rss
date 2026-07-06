@@ -6,5 +6,10 @@ export const serverOriginUrl = isProd
 
 export const appVersion = __APP_VERSION__;
 
+const enabledAuthCodeValue = window.__WEWE_RSS_ENABLED_AUTH_CODE__ as
+  | boolean
+  | string
+  | undefined;
+
 export const enabledAuthCode =
-  window.__WEWE_RSS_ENABLED_AUTH_CODE__ === false ? false : true;
+  enabledAuthCodeValue === true || enabledAuthCodeValue === 'true';
